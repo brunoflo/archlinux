@@ -13,11 +13,7 @@ target="/dev/sda"
 efisize="1G"
 swapsize="16G"
 rootmnt="/mnt"
-locale="en_US.UTF-8"
-locale2="es_ES.UTF-8"
-keymap="es"
 timezone="Europe/Madrid"
-hostname="pcOmen"
 
 ### Packages to pacstrap ##
 pacstrappacs=(

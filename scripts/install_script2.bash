@@ -9,7 +9,6 @@ if [[ "$UID" -ne 0 ]]; then
 fi
 
 ### Config options
-rootmnt="/mnt"
 locale="en_US.UTF-8"
 locale2="es_ES.UTF-8"
 keymap="es"
@@ -19,8 +18,6 @@ hostname="pcOmen"
 
 # Continue configuring the system
 echo "Continue configuring the system..."
-genfstab -U "$rootmnt" >> "$rootmnt"/etc/fstab
-arch-chroot "$rootmnt"
 ln -sf /usr/share/zoneinfo/"$timezone" /etc/localtime
 hwclock --systohc
 sed -i -e "/^#"$locale"/s/^#//" /etc/locale.gen

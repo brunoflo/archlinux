@@ -98,26 +98,7 @@ pacstrap -K $rootmnt "${pacstrappacs[@]}"
 # Configure the system
 echo "Configuring the system..."
 genfstab -U "$rootmnt" >> "$rootmnt"/etc/fstab
+echo "-----------------------------------------------------------------------------"
+echo "- First part of Install complete. Execute second, install_script2.bash .... -"
+echo "-----------------------------------------------------------------------------"
 arch-chroot "$rootmnt"
-ln -sf /usr/share/zoneinfo/"$timezone" /etc/localtime
-hwclock --systohc
-sed -i -e "/^#"$locale"/s/^#//" /etc/locale.gen
-sed -i -e "/^#"$locale2"/s/^#//" /etc/locale.gen
-echo "LANG="$locale"" >> /etc/locale.conf
-echo "KEYMAP="$keymap"" >> /etc/vconsole.conf
-echo "$hostname" > /etc/hostname
-
-echo "---- Enter root password ----"
-passwd
-
-# Bootloader
-grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
-grub-mkconfig -o /boot/grub/grub.cfg
-
-
-echo "-----------------------------------"
-echo "- Install complete. Rebooting.... -"
-echo "-----------------------------------"
-# sleep 5
-# sync
-# reboot

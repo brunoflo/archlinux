@@ -1,6 +1,5 @@
-#!/bin/bash
+#!/usr/bin/bash
 # Scrypt for automating arch install process as described in (https://wiki.archlinux.org/title/installation_guide)
-#set -xeuo pipefail
 
 #check if we're root
 if [[ "$UID" -ne 0 ]]; then

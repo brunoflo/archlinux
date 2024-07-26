@@ -1,20 +1,14 @@
-#!/bin/bash
+#!/usr/bin/bash
 # Scrypt for automating arch install process as described in (https://wiki.archlinux.org/title/installation_guide)
-#set -xeuo pipefail
 
-#check if we're root
-if [[ "$UID" -ne 0 ]]; then
-    echo "This script needs to be run as root!" >&2
-    exit 3
-fi
 
 ### Config options
 locale="en_US.UTF-8"
 locale2="es_ES.UTF-8"
 keymap="es"
 timezone="Europe/Madrid"
-hostname="pcOmen"
-
+hostname="userpc"
+username="user"
 
 # Continue configuring the system
 echo "Continue configuring the system..."
@@ -32,6 +26,13 @@ passwd
 # Bootloader
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
+
+
+# NEW -------------------------------------------------------
+# useradd -m -G wheel -s /usr/bin/bash "$username"
+useradd -m -G wheel "$username"
+echo "---- Enter user password ----"
+passwd "$username"
 
 
 echo "-----------------------------------"
